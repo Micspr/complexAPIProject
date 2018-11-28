@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const ctrls = require('../controllers/books')
+const ctrl = require('../controllers/books')
 
 router.get('/', ctrl.getAll)
 router.get('/:id', ctrl.getOne)
