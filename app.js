@@ -8,8 +8,8 @@ app.use(morgan('dev'))
 app.disable('x-powered-by')
 app.use(bodyParse.json)
 
-app.use('/', require('./routes/authors'))
-app.use('/books', require('./routes/books'))
+app.use('/authors', require('./routes/authors'))
+app.use('/', require('./routes/books'))
 
 app.use((req, res, next) => next({status:404, message: 'Route not found.'}))
 
