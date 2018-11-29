@@ -1,52 +1,76 @@
 const uuid = require('uuid/v4')
-const authors = [{'id': 0, 'firstName': 'Olorin', 'lastName': 'Istar'}]
+const books = require('./book').books
 
-const getAll = (limit) => {
+const getAll = (limit, bookId) => {
+    const book =books.find(ele => ele.id === bookId)
+
+    if(book === undefined)
+        return null
+
+    const authorInfo = book.authors
+
     if(limit) {
-        return authors.slice(0, limit)
+        return authorInfo.slice(0, limit)
     } else {
-        return authors
+        return authorInfo
     }
 }
 
-const getOne = (id) => {
-    const author = authors.findIndex(ele => ele.id === id)
-
-    if(author === -1)
-        return null
+const getOne = (bookId, authorId) => {
+    const book =books.find(ele => ele.id === bookId)
     
-    return authors[author]
+    if(book === undefined)
+        return null
+
+    const authorInfo = book.authors.findIndex(ele => ele.id === authorId)
+
+    if(authorInfo === -1)
+        return -1
+    
+    return book.authors[authorId]
 }
 
-const create = (newAuthor) => {
-    if(!newAuthor.firstName || !newAuthor.lastName)
+const create = (bookId, newAuthor) => {
+    if(!newAuthor.firstName || !newAuthor.lastName || !bookId)
         return null
 
-    authors.push(
+    const book = books.find(ele => ele.id === bookId)
+    
+    if(book === undefined)
+        return -1
+    
+    const authorInfo = book.authors
+
+    authorInfo.push(
         {id: uuid(),
         firstName: newAuthor.firstName,
         lastName: newAuthor.lastName}
     )
 
-    return authors[authors.length-1]
+    return authorInfo[authorInfo.length-1]
 }
 
-const update = (updateAuthor, body) => {
-    if(!updateAuthor)
+const update = (bookId, authorId, body) => {
+    if(!bookId || !authorId)
         return null
 
-    const author = authors.findIndex(ele => ele.id === updateAuthor)
+    const book = books.find(ele => ele.id === bookId)
+    
+    if(book === undefined)
+        return -1
 
-    if(author === -1)
+    const authorInfo = book.authors.findIndex(ele => ele.id === authorId)
+
+    if(authorInfo === -1)
         return -1
     
-    authors[author] = {
-        id: updateAuthor,
-        firstName: body.firstName || authors[author].firstName,
-        lastName: body.lastName || authors[author].lastName
+    book.authors[authorInfo] = {
+        id: authorId,
+        firstName: body.firstName || book.authors[authorInfo].firstName,
+        lastName: body.lastName || book.authors[authorInfo].lastName
     }
 
-    return authors[author]
+    return book.authors[authorInfo]
 }
 
 const remove = (removeAuthor) => {

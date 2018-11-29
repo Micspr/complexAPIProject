@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const ctrl = require('../controllers/authors')
 
-router.get('/', ctrl.getAll)
-router.get('/:id', ctrl.getOne)
-router.post('/', ctrl.create)
-router.put('/:id', ctrl.update)
-router.delete('/:id', ctrl.remove)
+router.get('/:bookId', ctrl.getAll)
+router.get('/:bookId/:authorId', ctrl.getOne)
+router.post('/:bookId', ctrl.create)
+router.put('/:bookId/:authorId', ctrl.update)
+router.delete('/:bookId/:authorId', ctrl.remove)
 
 module.exports = router

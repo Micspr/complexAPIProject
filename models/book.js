@@ -1,5 +1,5 @@
 const uuid = require('uuid/v4')
-const books = [{'id': uuid(), 'name': 'Silmarillion', 'borrowed': false, 'description': 'The origin of Olorin, the wand elf.', 'author': [{'id': 0, 'firstName': 'Olorin', 'lastName': 'Istar'}]}]
+const books = [{'id': '1', 'name': 'Silmarillion', 'borrowed': false, 'description': 'The origin of Olorin, the wand elf.', 'authors': [{'id': '0', 'firstName': 'Olorin', 'lastName': 'Istar'}]}]
 
 const getAll = (limit) => {
     if(limit) {
@@ -33,7 +33,7 @@ const create = (newBook) => {
     return books[books.length-1]
 }
 
-const update = (updateBook, ) => {
+const update = (updateBook, body) => {
     if(!updateBook)
         return null
     
@@ -41,7 +41,12 @@ const update = (updateBook, ) => {
 
     if(book === -1)
         return -1
-
+    if(body.borrowed === "true")
+        body.borrowed = true
+    
+    if(body.borrowed === "false")
+        body.borrowed = false
+        
     books[book] = {
         id: updateBook,
         name: body.name || books[book].name,
@@ -67,4 +72,4 @@ const remove = (removeBook) => {
     return result
 }
 
-module.exports = {getAll, getOne, create, update, remove}
+module.exports = {books, getAll, getOne, create, update, remove}

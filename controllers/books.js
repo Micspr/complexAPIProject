@@ -31,7 +31,7 @@ const update = (req, res, next) => {
     if(data === null)
         return res.status(400).json({data: {error: 'Please include an ID to update.'}})
 
-    if(data === null)
+    if(data === -1)
         return res.status(404).json({data: {error: 'Could not find a book with that ID.'}})
 
     res.status(200).json({data})
