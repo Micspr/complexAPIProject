@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const ctrls = require('../controllers/authors')
+const ctrl = require('../controllers/authors')
 
 router.get('/', ctrl.getAll)
 router.get('/:id', ctrl.getOne)
 router.post('/', ctrl.create)
-router.put('/:id', ctrl.modify)
+router.put('/:id', ctrl.update)
 router.delete('/:id', ctrl.remove)
 
 module.exports = router

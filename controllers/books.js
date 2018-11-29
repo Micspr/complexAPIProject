@@ -1,9 +1,10 @@
 const model = require('../models/book')
 
 const getAll = (req, res, next) => {
+    console.log('do the thing')
     const limit = req.query.limit
     const data = model.getAll(limit)
-    res.status(200).json({data})
+    res.status(200).send({data})
 }
 
 const getOne = (req, res, next) => {

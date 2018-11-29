@@ -1,6 +1,5 @@
 const uuid = require('uuid/v4')
-const author = require('../controllers/authors')
-const books = [{'id': uuid(), 'name': 'Silmarillion', 'borrowed': false, 'description': 'The origin of Olorin, the wand elf.', 'author': author.getOne(0)}]
+const books = [{'id': uuid(), 'name': 'Silmarillion', 'borrowed': false, 'description': 'The origin of Olorin, the wand elf.', 'author': [{'id': 0, 'firstName': 'Olorin', 'lastName': 'Istar'}]}]
 
 const getAll = (limit) => {
     if(limit) {

@@ -6,7 +6,7 @@ const app = express()
 app.use(cors())
 app.use(morgan('dev'))
 app.disable('x-powered-by')
-app.use(bodyParse.json)
+app.use(bodyParse.json())
 
 app.use('/authors', require('./routes/authors'))
 app.use('/', require('./routes/books'))
