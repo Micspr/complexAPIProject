@@ -73,16 +73,21 @@ const update = (bookId, authorId, body) => {
     return book.authors[authorInfo]
 }
 
-const remove = (removeAuthor) => {
-    if(!removeAuthor)
+const remove = (bookId, authorId) => {
+    if(!bookId || !authorId)
         return null
 
-    const author = authors.findIndex(ele => ele.id === removeAuthor)
-
-    if(author === -1)
+    const book = books.find(ele => ele.id === bookId)
+    
+    if(book === undefined)
         return -1
 
-    const result = authors.splice(author, 1)
+    const authorInfo = book.authors.findIndex(ele => ele.id === authorId)
+
+    if(authorInfo === -1)
+        return -1
+
+    const result = book.authors.splice(authorInfo, 1)
 
     return result
 }
