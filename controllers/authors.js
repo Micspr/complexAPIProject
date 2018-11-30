@@ -47,6 +47,7 @@ const update = (req, res, next) => {
 }
 
 const remove = (req, res, next) => {
+    console.log('Made it.')
     const data = model.remove(req.params.bookId, req.params.authorId)
 
     if(data === null)

@@ -2,7 +2,7 @@ const uuid = require('uuid/v4')
 const books = require('./book').books
 
 const getAll = (limit, bookId) => {
-    const book =books.find(ele => ele.id === bookId)
+    const book = books.find(ele => ele.id === bookId)
 
     if(book === undefined)
         return null

@@ -1,11 +1,11 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router({mergeParams: true})
 const ctrl = require('../controllers/authors')
 
-router.get('/:bookId', ctrl.getAll)
-router.get('/:bookId/:authorId', ctrl.getOne)
-router.post('/:bookId', ctrl.create)
-router.put('/:bookId/:authorId', ctrl.update)
-router.delete('/:bookId/:authorId', ctrl.remove)
+router.get('/', ctrl.getAll)
+router.get('/:authorId', ctrl.getOne)
+router.post('/', ctrl.create)
+router.put('/:authorId', ctrl.update)
+router.delete('/:authorId', ctrl.remove)
 
 module.exports = router
